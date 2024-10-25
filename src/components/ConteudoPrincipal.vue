@@ -1,34 +1,42 @@
 <template>
- <main class="conteudo-principal">
+  <main class="conteudo-principal">
     <section>
-          <span class="subtitulo-lg sua-lista-texto">
-Sua lista:
-          </span>
+      <span class="subtitulo-lg sua-lista-texto"> Sua lista: </span>
 
-          <ul class="ingredientes-sua-lista" >
-            <li class="ingrediente" v-for="ingrediente in ingredientes">
-                {{ ingrediente }}
-            </li>
-            
+      <ul v-if="ingredientes.length" class="ingredientes-sua-lista">
+        <li
+          
+          v-for="ingrediente in ingredientes"
+          :key="ingrediente"
+          
+        >
+          <Tag  :texto="ingrediente"/>
+          
+        </li>
+      </ul>
 
-          </ul>
+      <p v-else class="paragrafo lista-vazia">
+        <img src="../assets/icones/lista-vazia.svg" alt="Lista esta vazia" />
+        Sua lista está vazia, selecione ingredientes para iniciar.
+      </p>
     </section>
- </main>
+    <SelecionarIngredientes />
+  </main>
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
+import SelecionarIngredientes from "./SelecionarIngredientes.vue";
+import Tag from "./Tag.vue";
 
-
-const ingredientes = ['Alho', 'Manteiga' , 'Orégano']
-
+const ingredientes = ref<string[]>(["Alho", "Manteiga", "Orégano"]);
 </script>
 
 <style scoped>
-
 .conteudo-principal {
   padding: 6.5rem 7.5rem;
   border-radius: 3.75rem 3.75rem 0rem 0rem;
-  background: var(--creme, #FFFAF3);
+  background: var(--creme, #fffaf3);
   color: var(--cinza, #444);
 
   display: flex;
@@ -38,7 +46,7 @@ const ingredientes = ['Alho', 'Manteiga' , 'Orégano']
 }
 
 .sua-lista-texto {
-  color: var(--coral, #F0633C);
+  color: var(--coral, #f0633c);
   display: block;
   text-align: center;
   margin-bottom: 1.5rem;
@@ -51,17 +59,7 @@ const ingredientes = ['Alho', 'Manteiga' , 'Orégano']
   flex-wrap: wrap;
 }
 
-.ingrediente {
-  display: inline-block;
-  border-radius: 0.5rem;
-  min-width: 4.25rem;
-  padding: 0.5rem;
-  text-align: center;
-    transition: 0.2s;
-    color: var(--creme, #FFFAF3);
-  background: var(--coral, #F0633C);
-  font-weight: 700;
-}
+
 
 .lista-vazia {
   display: flex;
@@ -70,7 +68,7 @@ const ingredientes = ['Alho', 'Manteiga' , 'Orégano']
   flex-wrap: wrap;
   gap: 0.25rem;
 
-  color: var(--coral, #F0633C);
+  color: var(--coral, #f0633c);
   text-align: center;
 }
 
@@ -87,5 +85,4 @@ const ingredientes = ['Alho', 'Manteiga' , 'Orégano']
     gap: 4rem;
   }
 }
-
 </style>
