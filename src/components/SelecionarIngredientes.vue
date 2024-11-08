@@ -8,7 +8,8 @@
 
     <ul class="categorias">
       <li v-for="categoria in categorias" :key="categoria.id" class="">
-        <CardCategoria :categoria="categoria" />
+        <CardCategoria :categoria="categoria"
+         @adcionar-ingrediente="$emit('adcionarIngrediente', $event)"/>
       </li>
     </ul>
     <p class="paragrafo dica">
@@ -24,6 +25,9 @@ import CardCategoria from "./CardCategoria.vue";
 
 const categorias = ref<ICategoria[]>([]);
 
+const emit = defineEmits<{
+  (event: 'adcionarIngrediente', ingrediente: string): void;
+}>();
 
 
 async function obterCategorias() {

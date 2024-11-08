@@ -7,7 +7,8 @@
 <ul class="categoria__ingredientes">
 
     <li v-for="ingrediente in categoria.ingredientes" :key="ingrediente">
-   {{ ingrediente }}
+   <IngredienteSelecionavel :ingrediente="ingrediente"
+   @adcionar-ingrediente="$emit('adcionarIngrediente', $event)" />
     </li>
 </ul>
    </article>
@@ -16,11 +17,18 @@
 <script setup lang="ts">
 import type ICategoria from '@/interfaces/ICategorias';
 import type { PropType } from 'vue';
+import Tag from './Tag.vue';
+import IngredienteSelecionavel from './ingredienteSelecionavel.vue';
+
 
 
 const props = defineProps<{
 
     categoria: ICategoria;
+}>();
+
+const emit = defineEmits<{
+  (event: 'adcionarIngrediente', ingrediente: string): void;
 }>();
 
 </script>
