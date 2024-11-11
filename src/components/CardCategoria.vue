@@ -8,7 +8,7 @@
 
     <li v-for="ingrediente in categoria.ingredientes" :key="ingrediente">
    <IngredienteSelecionavel :ingrediente="ingrediente"
-   @adcionar-ingrediente="$emit('adcionarIngrediente', $event)" />
+   @adcionar-ingrediente="emit('adcionarIngrediente', $event)" />
     </li>
 </ul>
    </article>

@@ -9,7 +9,7 @@
     <ul class="categorias">
       <li v-for="categoria in categorias" :key="categoria.id" class="">
         <CardCategoria :categoria="categoria"
-         @adcionar-ingrediente="$emit('adcionarIngrediente', $event)"/>
+         @adcionar-ingrediente="emit('adcionarIngrediente', $event)"/>
       </li>
     </ul>
     <p class="paragrafo dica">

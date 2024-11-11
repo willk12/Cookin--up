@@ -1,7 +1,7 @@
 <template>
   <main class="conteudo-principal">
     <SuaLista :ingredientes="ingredientes" />
-    <SelecionarIngredientes />
+    <SelecionarIngredientes @adcionar-ingrediente="ingredientes.push($event)"/>
   </main>
 </template>
 
@@ -11,7 +11,7 @@ import SelecionarIngredientes from "./SelecionarIngredientes.vue";
 import Tag from "./Tag.vue";
 import SuaLista from "./suaLista.vue";
 
-const ingredientes = ref<string[]>(["Alho", "Manteiga", "Orégano"]);
+const ingredientes = ref<string[]>([]);
 </script>
 
 <style scoped>
