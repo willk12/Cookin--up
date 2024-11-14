@@ -1,7 +1,7 @@
 <template>
   <main class="conteudo-principal">
     <SuaLista :ingredientes="ingredientes" />
-    <SelecionarIngredientes @adcionar-ingrediente="ingredientes.push($event)"/>
+    <SelecionarIngredientes @adicionar-ingrediente="ingredientes.push($event)" @remover-ingrediente="removerIngrediente($event)"/>
   </main>
 </template>
 
@@ -12,6 +12,10 @@ import Tag from "./Tag.vue";
 import SuaLista from "./suaLista.vue";
 
 const ingredientes = ref<string[]>([]);
+
+function removerIngrediente(ingrediente: string) {
+  ingredientes.value = ingredientes.value.filter(item => item !== ingrediente);
+}
 </script>
 
 <style scoped>

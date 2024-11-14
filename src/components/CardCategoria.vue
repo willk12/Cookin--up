@@ -8,7 +8,9 @@
 
     <li v-for="ingrediente in categoria.ingredientes" :key="ingrediente">
    <IngredienteSelecionavel :ingrediente="ingrediente"
-   @adcionar-ingrediente="emit('adcionarIngrediente', $event)" />
+    @adicionar-ingrediente="emit('adicionar-ingrediente', $event)" 
+          @remover-ingrediente="emit('remover-ingrediente', $event)"
+   />
     </li>
 </ul>
    </article>
@@ -28,7 +30,8 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{
-  (event: 'adcionarIngrediente', ingrediente: string): void;
+  (event: 'adicionar-ingrediente', ingrediente: string): void;
+  (event: 'remover-ingrediente', ingrediente: string): void;
 }>();
 
 </script>

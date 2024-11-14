@@ -1,7 +1,7 @@
 <template>
     <button
     class="ingrediente"
-    @click=aoClicar()
+    @click="aoClicar"
     :aria-pressed="selecionado"
     >
     <Tag :texto="ingrediente" :ativa="selecionado"/>
@@ -13,29 +13,31 @@ import { onMounted, ref } from 'vue';
 import Tag from './Tag.vue';
 
 const props = defineProps({
-    ingrediente: String,
+  ingrediente: String,
 });
 
 const emit = defineEmits<{
-    (event: 'adcionarIngrediente', ingrediente: string): void;
-    
+  (event: 'adicionar-ingrediente', ingrediente: string): void;
+  (event: 'remover-ingrediente', ingrediente: string): void;
 }>();
 
-const selecionado = ref(false)
+const selecionado = ref(false);
 
-function aoClicar(){
+function aoClicar() {
+  selecionado.value = !selecionado.value;
 
-    selecionado.value = !selecionado.value
-
-    if(selecionado.value){
-        emit('adcionarIngrediente', props.ingrediente);
-    }
-
+  if (selecionado.value) {
+    emit('adicionar-ingrediente', props.ingrediente);
+  } else {
+    emit('remover-ingrediente', props.ingrediente);
+  }
 }
 
-
-
 </script>
+
+
+
+
 
 <style scoped>
 

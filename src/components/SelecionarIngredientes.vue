@@ -7,9 +7,12 @@
     </p>
 
     <ul class="categorias">
-      <li v-for="categoria in categorias" :key="categoria.id" class="">
-        <CardCategoria :categoria="categoria"
-         @adcionar-ingrediente="emit('adcionarIngrediente', $event)"/>
+      <li v-for="categoria in categorias" :key="categoria.id">
+        <CardCategoria 
+          :categoria="categoria"
+          @adicionar-ingrediente="emit('adicionar-ingrediente', $event)"
+          @remover-ingrediente="emit('remover-ingrediente', $event)"
+        />
       </li>
     </ul>
     <p class="paragrafo dica">
@@ -26,7 +29,8 @@ import CardCategoria from "./CardCategoria.vue";
 const categorias = ref<ICategoria[]>([]);
 
 const emit = defineEmits<{
-  (event: 'adcionarIngrediente', ingrediente: string): void;
+  (event: 'adicionar-ingrediente', ingrediente: string): void;
+  (event: 'remover-ingrediente', ingrediente: string): void;
 }>();
 
 
