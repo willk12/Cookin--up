@@ -4,7 +4,7 @@
     <SelecionarIngredientes v-if="conteudo === 'SelecionarIngredientes'" 
     @adicionar-ingrediente="ingredientes.push($event)"
     @remover-ingrediente="removerIngrediente($event)"
-    @buscar-receitas="conteudo = 'MostrarReceitas'"
+    @buscar-receitas="navegar"
     />
     <MostrarReceitas v-else-if="conteudo === 'MostrarReceitas'"/>
     
@@ -26,6 +26,12 @@ const conteudo = ref<Pagina>('SelecionarIngredientes');
 function removerIngrediente(ingrediente: string) {
   ingredientes.value = ingredientes.value.filter(item => item !== ingrediente);
 }
+
+function navegar(pagina: Pagina){
+
+  conteudo.value = 'MostrarReceitas'
+}
+
 
 function buscarReceitas(){
   alert('clicado!')
