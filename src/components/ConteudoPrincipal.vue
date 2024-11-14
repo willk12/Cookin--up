@@ -1,7 +1,13 @@
 <template>
   <main class="conteudo-principal">
     <SuaLista :ingredientes="ingredientes" />
-    <SelecionarIngredientes @adicionar-ingrediente="ingredientes.push($event)" @remover-ingrediente="removerIngrediente($event)"/>
+    <SelecionarIngredientes v-if="conteudo === 'SelecionarIngredientes'" 
+    @adicionar-ingrediente="ingredientes.push($event)"
+    @remover-ingrediente="removerIngrediente($event)"
+    @buscar-receitas="conteudo = 'MostrarReceitas'"
+    />
+    <MostrarReceitas v-else-if="conteudo === 'MostrarReceitas'"/>
+    
   </main>
 </template>
 
@@ -10,15 +16,27 @@ import { ref } from "vue";
 import SelecionarIngredientes from "./SelecionarIngredientes.vue";
 import Tag from "./Tag.vue";
 import SuaLista from "./suaLista.vue";
+import MostrarReceitas from "./MostrarReceitas.vue";
+
+type Pagina = "SelecionarIngredientes" | "MostrarReceitas";
 
 const ingredientes = ref<string[]>([]);
+const conteudo = ref<Pagina>('SelecionarIngredientes');
 
 function removerIngrediente(ingrediente: string) {
   ingredientes.value = ingredientes.value.filter(item => item !== ingrediente);
 }
+
+function buscarReceitas(){
+  alert('clicado!')
+}
 </script>
 
 <style scoped>
+
+
+
+
 .conteudo-principal {
   padding: 6.5rem 7.5rem;
   border-radius: 3.75rem 3.75rem 0rem 0rem;

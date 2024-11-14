@@ -18,6 +18,8 @@
     <p class="paragrafo dica">
       *Atenção consideramos que você tem em casa sal, pimenta e água.
     </p>
+
+    <BotaoPrincipal texto ='Buscar Receitas!' @click="emit('buscar-receitas')" />
   </section>
 </template>
 
@@ -25,12 +27,14 @@
 import type ICategoria from "@/interfaces/ICategorias";
 import { onMounted, ref } from "vue";
 import CardCategoria from "./CardCategoria.vue";
+import BotaoPrincipal from "./BotaoPrincipal.vue";
 
 const categorias = ref<ICategoria[]>([]);
 
 const emit = defineEmits<{
   (event: 'adicionar-ingrediente', ingrediente: string): void;
   (event: 'remover-ingrediente', ingrediente: string): void;
+  (event: 'buscar-receitas'): void;
 }>();
 
 
